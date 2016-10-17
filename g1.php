@@ -18,7 +18,7 @@
     </head>
     
     <body>
-                        <div id="gr-graph" class="graph"></div>
+                        <div id="gr_bar" class="graph"></div>
                  
         
         <script src="assets/js/jquery.js"></script>
@@ -37,19 +37,22 @@
         
         var a="<?php echo $a;?>";
         $.ajax({
-		url : "http://localhost/oj/delitosanio.php?an=".concat(a),
+		url : "http://jspepq.com/mesdelito.php?anio=".concat(a),
 		method : "GET",
 		success : function(datos) {
 			console.log(datos);
             
-          Morris.Line({
-            element: 'gr-graph',
-            data: datos,
-            xkey: 'anio',
-            ykeys: ['cantdelit'],
-            labels: ['Delitos'],
-            lineColors:['#4ECDC4','#ed5565']
-          });
+           Morris.Bar({
+                element : 'gr_bar',
+                data: datos,
+                xkey: 'mes',
+                ykeys: ['totaldel'],
+                labels: ['Delitos'],
+                barRatio: 0.4,
+                xLabelAngle: 35,
+                hideHover: 'auto',
+                barColors: ['#4a8bc2']
+            });
 
 		},
 		error : function(datos) {

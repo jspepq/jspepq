@@ -1,7 +1,7 @@
 <?php
 $a = $_GET['nomb'];
  require('conexion.php');
-$sql = "select Pr.NumeroEjecutoria, Pr.NumeroUnico, group_concat(concat(dp.nombre,concat(' ',dp.Apellido))) as nombre, group_concat(C.NombreCategoria) as Delito, Orj.Nombre as Tribunal,Pp.FechaDetencion,Pp.TotalAnio, Pp.TotalMes, Pp.TotalDia, Cp.TC, Cp.BC, Cp.LC, Cp.MP from datosPersonales as dp inner join Persona as p on dp.IdPersona=p.IdPersona inner join AsignacionComputo as Asigc on p.IdPersona=Asigc.IdPersona inner join ComputoPena as Cp on Asigc.IdAsigComputo=Cp.IdAsigComputo inner join Estado as e on p.IdEstado= e.IdEstado inner join Persona_Procesos as Pp on p.IdPersona=Pp.IdPersona inner join ProcesosDelito as Pd on Pp.IdProcesoPersona=Pd.IdProcesoPersona inner join Categoria as C on Pd.IdCategoria = C.IdCategoria inner join Procesos as Pr on Pp.IdProceso=Pr.IdProceso inner join Procedencias as Proc on Pr.IdProcedencia=Proc.IdProcedencia inner join OrganoJurisdiccional as Orj on Proc.IdOrgano=Orj.IdOrgano where concat(dp.nombre,concat(' ',dp.Apellido)) like '%$a%' group by Pr.NumeroEjecutoria, Tribunal,Pp.FechaDetencion,Pp.TotalAnio,  Pp.TotalMes, Pp.TotalDia, Pr.NumeroUnico,Cp.TC, Cp.BC, Cp.LC, Cp.MP;";
+$sql = "select Pr.NumeroEjecutoria, Pr.NumeroUnico, group_concat(distinct concat(dp.nombre,concat(' ',dp.Apellido))) as nombre, group_concat(distinct C.NombreCategoria) as Delito, Orj.Nombre as Tribunal,Pp.FechaDetencion,Pp.TotalAnio, Pp.TotalMes, Pp.TotalDia, Cp.TC, Cp.BC, Cp.LC, Cp.MP from datosPersonales as dp inner join Persona as p on dp.IdPersona=p.IdPersona inner join AsignacionComputo as Asigc on p.IdPersona=Asigc.IdPersona inner join ComputoPena as Cp on Asigc.IdAsigComputo=Cp.IdAsigComputo inner join Estado as e on p.IdEstado= e.IdEstado inner join Persona_Procesos as Pp on p.IdPersona=Pp.IdPersona inner join ProcesosDelito as Pd on Pp.IdProcesoPersona=Pd.IdProcesoPersona inner join Categoria as C on Pd.IdCategoria = C.IdCategoria inner join Procesos as Pr on Pp.IdProceso=Pr.IdProceso inner join Procedencias as Proc on Pr.IdProcedencia=Proc.IdProcedencia inner join OrganoJurisdiccional as Orj on Proc.IdOrgano=Orj.IdOrgano where concat(dp.nombre,concat(' ',dp.Apellido)) like '%$a%' group by Pr.NumeroEjecutoria, Tribunal,Pp.FechaDetencion,Pp.TotalAnio,  Pp.TotalMes, Pp.TotalDia, Pr.NumeroUnico,Cp.TC, Cp.BC, Cp.LC, Cp.MP;";
 $result = $mysqli->query($sql);
 $rows = $result->num_rows;
 
@@ -38,16 +38,16 @@ $rows = $result->num_rows;
     <body>
     
         <div class="row mt" >
-              <div class="col-lg-12">
+              <div class="col-lg-12" style="padding:25px;">
                       <div class="content-panel">
                           <section id="no-more-tables">
-                              <table class="table table-bordered table-striped table-condensed cf table-hover">
+                              <table class="table table-bordered table-striped table-condensed cf table-hover" >
                                   <thead class="cf">
                                   <tr>
                                       <th rowspan="2" scope="col">Número de Ejecutoria</th>
                                       <th rowspan="2" scope="col">Número Único</th>
-                                      <th rowspan="2" scope="col" class="numeric">Nombre</th>
-                                      <th rowspan="2" class="numeric">Delito</th>
+                                      <th rowspan="2" scope="col" class="numeric">Nombre(s)</th>
+                                      <th rowspan="2" class="numeric">Delito(s)</th>
                                       <th rowspan="2" class="numeric">Tribunal</th>
                                       <th rowspan="2" class="numeric">Fecha Detención</th>
                                       <th colspan="3" class="numeric">Prisión</th>

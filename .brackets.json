@@ -1,0 +1,7 @@
+{
+    "jscodehints.detectedExclusions": [
+        "/var/www/html/jspepq.com/assets/Highcharts/exporting-server/phantomjs/broken-axis.js",
+        "/var/www/html/jspepq.com/assets/Highcharts/exporting-server/phantomjs/data.js",
+        "/var/www/html/jspepq.com/assets/Highcharts/exporting-server/phantomjs/funnel.js"
+    ]
+}

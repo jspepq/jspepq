@@ -35,7 +35,7 @@
     <link href="assets/css/style-responsive.css" rel="stylesheet">
 
     <link href="assets/css/table-responsive.css" rel="stylesheet">
-
+      
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -61,7 +61,7 @@
             <div class="top-menu">
                  
             	<ul class="nav pull-right top-menu">
-                    <li><div class="nomb">
+                     <li><div class="nomb">
                         <div style="padding-right: 50px;"  class="dropdown">
                             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                  <i class="li_user"></i>
@@ -79,6 +79,7 @@
                         </div>
                    
                 </div></li>
+                    
             	</ul>
             </div>
         </header>
@@ -129,7 +130,7 @@
           <section class="wrapper">
               <h4 style="padding-top:50px;"><i class="fa fa-angle-right"></i> Tabla General - Privados de Libertad</h4>
                <div style="padding-left: 0px; padding-top:30px;">
-                              <input  id="lnomb" type="text"  placeholder="Escriba el nombre de la persona" name="lnomb" size="40">
+                              <input  id="lnomb" type="text"  placeholder="Escriba el nombre de la persona" name="lnomb" size="40" autofocus>
                                   <span >
                                       <input type="button" id="btntab" value="Buscar" />
 

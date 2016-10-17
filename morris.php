@@ -138,34 +138,12 @@
               <!-- page start-->
              
               <div id="morris">
-                   
-                  <div class="row mt">
-                      <div class="col-lg-3">
-                              <select class="form-control" name="combo1">
-                                  <option value="0">Seleccione el Juez</option>
-                                  <option value="Juez A">Juez A</option>
-                                  <option value="Juez B">Juez B</option>
-                              </select>
-                          <input type="text" name="valor1" size="20" value="Valor">
-                      </div>
-                  
-                  </div>
+                 
                   
                   <div class="row mt">
                       <div class="col-lg-6">
                           <div class="content-panel">
                               <h4><i class="fa fa-angle-right"></i> Delitos Anuales</h4>
-                              <!--<div style="padding-left: 50px;">
-                              <input  id="aniog1" type="text"  placeholder="Escriba el año" name="aniog1" required="">
-                                  <span >
-                                      <input type="button" id="btng1" value="Generar Grafica" />
-                                      <input type="button" value="Reiniciar" class="reiniciar" />
-
-                                  </span>
-                              </div>-->
-                              <!--<div id="htmlext" class="reiniciar">
-                                      Aqui se cargará el contenido
-                                  </div>-->
                               <div class="panel-body">
                                   <div id="gr-graph" class="graph"></div>
                               </div>
@@ -174,21 +152,20 @@
                       <div class="col-lg-6">
                           <div class="content-panel">
                               <h4><i class="fa fa-angle-right"></i> Total de Delitos Mensuales</h4>   
-                              <div class="panel-body">
-                                  <div id="gr_bar" class="graph"></div>
+                              <br>
+                              <div style="padding-left: 50px;">
+                              <input  id="txtanio" type="text"  placeholder="Ingrese el año" name="txtanio" required="">
+                                  <span >
+                                      <input type="button" id="btng2" value="Generar Grafica" />
+                                  </span>
                               </div>
+                              <div id="g2" class="reiniciar">
+                                  
+                                  </div>
                           </div>
                       </div>
                   </div>
                   <div class="row mt">
-                      <!--<div class="col-lg-6">
-                          <div class="content-panel">
-                              <h4><i class="fa fa-angle-right"></i> Chart Example 3</h4>
-                              <div class="panel-body">
-                                  <div id="hero-area" class="graph"></div>
-                              </div>
-                          </div>
-                      </div>-->
                       <div class="col-lg-6">
                           <div class="content-panel">
                               <h4><i class="fa fa-angle-right"></i> Categoria de Delitos</h4>
@@ -229,11 +206,6 @@
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 	<script src="assets/js/morris-0.4.3.min.js"></script>
     <script src="assets/js/common-scripts.js"></script>
-
-    <!--script for this page-->
-    <!--<script src="assets/js/morris-conf.js"></script>-->
-      <script src="assets/js/conf_grafica1.js"></script>
-      <script src="assets/js/conf_grafica3.js"></script>
       
       <script>
        var Script = function(){
@@ -263,15 +235,7 @@
        }();
        
         </script>
-      <script>
-      
-          $(document).ready(function(){
-              $("select[name=combo1]").change(function(){
-                  $('input[name=valor1]').val($(this).val());
-              });
-          });
-          
-      </script>
+    
       
       <script>
           $(document).ready(function(){
@@ -304,7 +268,14 @@
 });
       
       </script>
-      
+      <script>
+           $(document).ready(function(){
+               $("#btng2").click(function() {
+                   var anio = $("#txtanio").val().toString();
+                   $("#g2").load('g1.php?an='+anio);  
+               });
+           });
+      </script>
       <script>
         
         $.ajax({
