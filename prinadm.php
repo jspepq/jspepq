@@ -125,7 +125,7 @@
                       </a>
                       <ul class="sub">
                           <li><a  href="responsive_table.php">General</a></li>
-                          <li><a  href="morris.php">Graficas</a></li>
+                          <li><a  href="morris.php">Gráficas</a></li>
                           <!--<li><a  href="panels.php">Panels</a></li>-->
                       </ul>
                   </li>
