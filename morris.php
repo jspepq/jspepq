@@ -1,13 +1,13 @@
 <?php
-    
+
     session_start();
     require 'conexion.php';
 
     if(!isset($_SESSION["id_us"])){
         header("Location: login.php");
     }
-    
-    $idusuario = $_SESSION['id_us']; 
+
+    $idusuario = $_SESSION['id_us'];
     // para datos del usuario
      $sql ="select E.IdEmpleado, concat(E.Nombre,concat(', ', E.Apellido)) as 'Nombre', E.Correo, T.NombreTribunal, C.Cargo, U.Estado from Empleado as E inner join Tribunal as T on E.IdTribunal = T.IdTribunal inner join Cargo as C on E.IdCargo = C.IdCargo inner join Usuarios as U on E.IdEmpleado = U.IdEmpleado where E.IdEmpleado='$idusuario'";
     $resultado = $mysqli->query($sql);
@@ -33,11 +33,11 @@
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
-    
+
     <!--external css-->
     <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-	<link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">    
-    <link rel="stylesheet" type="text/css" href="assets/lineicons/style.css">  
+    <link rel="stylesheet" href="assets/css/morris-0.4.3.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/lineicons/style.css">
     <!-- Custom styles for this template -->
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/style-responsive.css" rel="stylesheet">
@@ -64,9 +64,9 @@
             <!--logo start-->
             <a href="prinadm.php" class="logo"><b>Juzgado Segundo Pluripersonal de Ejecución Penal, Quetzaltenango</b></a>
             <!--logo end-->
-            
+
             <div class="top-menu">
-                
+
             	<ul class="nav pull-right top-menu">
                      <li><div class="nomb">
                         <div style="padding-right: 50px;"  class="dropdown">
@@ -84,14 +84,14 @@
                             <li><a class="logout" href="logout.php"><i class="li_lock"></i> Cerrar Sesión</a></li>
                           </ul>
                         </div>
-                   
+
                 </div></li>
-                    
+
             	</ul>
             </div>
         </header>
       <!--header end-->
-      
+
       <!-- **********************************************************************************************************************************************************
       MAIN SIDEBAR MENU
       *********************************************************************************************************************************************************** -->
@@ -100,10 +100,10 @@
           <div id="sidebar"  class="nav-collapse ">
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
-              
+
               	  <p class="centered"><a href="prinadm.php"><img src="assets/img/oj.gif" class="img-circle" width="60"></a></p>
               	  <h5 class="centered">Menú Principal</h5>
-              	  	
+
                   <li class="mt">
                       <a href="prinadm.php">
                           <i class="fa fa-dashboard"></i>
@@ -119,7 +119,7 @@
                       <ul class="sub">
                           <li><a  href="responsive_table.php">General</a></li>
                           <li><a  href="morris.php">Gráficas</a></li>
-                          
+
                           <!--<li><a  href="panels.php">Panels</a></li>-->
                       </ul>
                   </li>
@@ -127,7 +127,7 @@
                   </div>
               </aside>
       <!--sidebar end-->
-      
+
       <!-- **********************************************************************************************************************************************************
       MAIN CONTENT
       *********************************************************************************************************************************************************** -->
@@ -136,10 +136,10 @@
           <section class="wrapper site-min-height">
           <h3><i class="fa fa-angle-right"></i>Gráficas </h3>
               <!-- page start-->
-             
+
               <div id="morris">
-                 
-                  
+
+
                   <div class="row mt">
                       <div class="col-lg-6">
                           <div class="content-panel">
@@ -151,7 +151,7 @@
                       </div>
                       <div class="col-lg-6">
                           <div class="content-panel">
-                              <h4><i class="fa fa-angle-right"></i> Total de Delitos Mensuales</h4>   
+                              <h4><i class="fa fa-angle-right"></i> Total de Delitos Mensuales</h4>
                               <br>
                               <div style="padding-left: 50px;">
                               <input  id="txtanio" type="text"  placeholder="Ingrese el año" name="txtanio" required="">
@@ -160,7 +160,7 @@
                                   </span>
                               </div>
                               <div id="g2" class="reiniciar">
-                                  
+
                                   </div>
                           </div>
                       </div>
@@ -169,7 +169,7 @@
                       <div class="col-lg-6">
                           <div class="content-panel">
                               <h4><i class="fa fa-angle-right"></i> Categoria de Delitos</h4>
-                              
+
                               <div class="panel-body">
                                   <div id="hero-donut" class="graph"></div>
                               </div>
@@ -203,10 +203,10 @@
 
 
     <!--common script for all pages-->
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+	<script src="assets/js/raphael-min.js"></script>
 	<script src="assets/js/morris-0.4.3.min.js"></script>
     <script src="assets/js/common-scripts.js"></script>
-      
+
       <script>
        var Script = function(){
            $(function (){
@@ -216,27 +216,27 @@
                        <?php
                        if($rows>0)
                        {
-                           while($row = mysqli_fetch_array($result)){ 
+                           while($row = mysqli_fetch_array($result)){
                                $datos[$i]=$row;
                                $i++;
                        ?>
                        {label: '<?php  echo $row['NombreCategoria'];?>', value: <?php echo $row['cantidad'];?> },
-                       <?php 
+                       <?php
                            }
                        }
                        ?>
-                       
+
                 ],
                   colors: ['#3498db', '#2980b9', '#34495e'],
                 formatter: function (y) { return y }
       });
            });
-           
+
        }();
-       
+
         </script>
-    
-      
+
+
       <script>
           $(document).ready(function(){
 	$.ajax({
@@ -244,7 +244,7 @@
 		method : "GET",
 		success : function(datos) {
 			console.log(datos);
-            
+
             Morris.Bar({
                 element : 'gr_bar',
                 data: datos,
@@ -256,34 +256,34 @@
                 hideHover: 'auto',
                 barColors: ['#4a8bc2']
             });
-    
-            
+
+
 		},
 		error : function(datos) {
 			console.log(datos);
 		}
 	});
-    
-   
+
+
 });
-      
+
       </script>
       <script>
            $(document).ready(function(){
                $("#btng2").click(function() {
                    var anio = $("#txtanio").val().toString();
-                   $("#g2").load('g1.php?an='+anio);  
+                   $("#g2").load('g1.php?an='+anio);
                });
            });
       </script>
       <script>
-        
+
         $.ajax({
 		url : "http://jspepq.com/delitosanio.php",
 		method : "GET",
 		success : function(datos) {
 			console.log(datos);
-            
+
           Morris.Line({
             element: 'gr-graph',
             data: datos,
@@ -299,6 +299,6 @@
 		}
 	});
         </script>
-      
+
   </body>
 </html>
